@@ -6,7 +6,7 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 16:51:29 by mtellal           #+#    #+#              #
-#    Updated: 2022/01/06 16:38:45 by mtellal          ###   ########.fr        #
+#    Updated: 2022/01/06 16:40:22 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C libft/
-	make -C mlx/	
+	make -C m/	
 	$(CC) -g  -o $(NAME) $(HEADER) $(SRC) -L m/  $(LIBFT) -lmlx -lXext -lX11 
 
 r: re 
@@ -43,7 +43,7 @@ val: re
 
 clean:
 	make clean -C libft
-	make clean -C mlx	
+	make clean -C m	
 	rm -rf $(OBJ)
 
 fclean: clean
