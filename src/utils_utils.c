@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/07 14:59:27 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/07 15:00:01 by mtellal          ###   ########.fr       */
+/*   Created: 2022/01/07 16:00:06 by mtellal           #+#    #+#             */
+/*   Updated: 2022/01/07 16:56:09 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void	putpixel(t_data *data, int a, int b, void *p)
 {
-	t_data	data;
+	int	sc;
+	int	c;
+	int	i;
+	int	j;
 
-	errno = 0;
-	if (argc == 2)
-	{
-		map_all(argv[1], &data);
-		data.move = 0;
-		data.sc = 70;
-		data.w = ft_strlen(data.tab[0]);
-		data.h = tab_len(data.tab);
-		game(&data);
-	}
-	else
-	{
-		print_err("invalid args", 0);
-	}
-	return (0);
+	sc = data->sc;
+	c = (sc - data->e.width) / 2;
+	i = data->i;
+	j = data->j;
+	my_mlx_pixel_put(data, c + b * sc + j, c + a * sc + i, *(unsigned int *)p);
 }

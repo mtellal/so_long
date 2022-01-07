@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:09:29 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/07 12:09:17 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 14:46:22 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	get_next_line(int fd, char **line)
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (-1);
-	while (!ft_line(s) && j  > 0)
+	while (!ft_line(s) && j > 0)
 	{
 		j = read(fd, buffer, BUFFER_SIZE);
 		if (j)

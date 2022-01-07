@@ -6,7 +6,7 @@
 #    By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 16:51:29 by mtellal           #+#    #+#              #
-#    Updated: 2022/01/06 16:40:22 by mtellal          ###   ########.fr        #
+#    Updated: 2022/01/07 17:01:58 by mtellal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ CLAGS = -Wextra -Wall -Werror
 
 NAME = so_long
 
-SRC = parse/check_things.c parse/parse_map.c parse/check_things_utils.c \
-	src/utils.c src/pixels.c src/game.c src/events.c src/window.c src/elements.c src/move.c main.c
+SRC = parse/check_things.c parse/parse_map.c parse/check_things_utils.c parse/utils.c \
+	src/utils.c src/pixels.c src/game.c src/events.c src/window.c src/elements.c  \
+	src/utils_utils.c src/move.c src/move_utils.c main.c
 
 HEADER = -I includes -I libft -I m 
 

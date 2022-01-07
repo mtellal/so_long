@@ -6,12 +6,11 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:50:28 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/05 18:47:13 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 17:15:09 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	all_consumn(t_data *data)
 {
@@ -59,14 +58,10 @@ int	is_valid_move(int m, t_data *data)
 		{
 			if (data->tab[i][j] == 'P')
 			{
-				if (m == UP && i > 0 && check_conditions(data, i - 1, j))
+				if (valid_move(data, m, i, j))
 					return (1);
-				if (m == DOWN && i < data->h && check_conditions(data, i + 1, j))
-					return (1);
-				if (m == LEFT && j > 0 && check_conditions(data, i, j - 1))
-					return (1);
-				if (m == RIGHT && j < data->w && check_conditions(data, i, j + 1))
-					return (1);
+				else
+					return (0);
 			}
 			j++;
 		}
@@ -80,26 +75,26 @@ int	move(int m, t_data *data)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < data->h)
+	data->i = 0;
+	while (data->i < data->h)
 	{
-		j = 0;
-		while (j < data->w)
+		data->j = 0;
+		while (data->j < data->w)
 		{
-			if (data->tab[i][j] == 'P')
+			if (data->tab[data->i][data->j] == 'P')
 			{
 				if (m == UP)
-					return (redraw(data, i - 1, j, i, j, 0x00000000));
+					return (redraw(data, data->i - 1, data->j));
 				if (m == DOWN)
-					return (redraw(data, i + 1, j, i, j, 0x00000000));
+					return (redraw(data, data->i + 1, data->j));
 				if (m == LEFT)
-                                	return (redraw(data, i, j - 1, i, j, 0x00000000));
+					return (redraw(data, data->i, data->j - 1));
 				if (m == RIGHT)
-                                	return (redraw(data, i, j + 1, i, j, 0x00000000));
+					return (redraw(data, data->i, data->j + 1));
 			}
-			j++;
+			data->j++;
 		}
-		i++;
+		data->i++;
 	}
 	return (0);
 }	
@@ -108,7 +103,7 @@ int	move_player(int k, t_data *data)
 {
 	if (k == UP)
 	{
-		if (is_valid_move( UP, data))
+		if (is_valid_move(UP, data))
 			return (move(UP, data));
 	}
 	if (k == DOWN)

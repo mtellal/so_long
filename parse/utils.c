@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/07 14:59:27 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/07 15:00:01 by mtellal          ###   ########.fr       */
+/*   Created: 2022/01/07 15:49:16 by mtellal           #+#    #+#             */
+/*   Updated: 2022/01/07 15:56:18 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+int	compare(int p, int c, int e)
 {
-	t_data	data;
+	if (p != 1 || c < 0 || e < 0)
+		return (0);
+	return (1);
+}
 
-	errno = 0;
-	if (argc == 2)
-	{
-		map_all(argv[1], &data);
-		data.move = 0;
-		data.sc = 70;
-		data.w = ft_strlen(data.tab[0]);
-		data.h = tab_len(data.tab);
-		game(&data);
-	}
-	else
-	{
-		print_err("invalid args", 0);
-	}
+char	*err_char(char **tab)
+{
+	if (!check_proportionate(tab))
+		return ("probleme de longueur");
+	if (!check_atleast(tab))
+		return ("manque un element (E, C, P) ou 2 Player");
+	if (!check_rectengular(tab))
+		return ("t'as fait un carre wsh");
+	if (!check_bad_items(tab))
+		return ("char inconnu diff de (10EPC)");
 	return (0);
 }

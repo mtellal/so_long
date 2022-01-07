@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 09:02:43 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/05 16:42:13 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 15:23:19 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 
 void	init(t_data *data)
 {
+	int	sc;
+	int	h;
+	int	*bpp;
+	int	*e;
+
+	h = data->h;
+	sc = data->sc;
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, data->w * data->sc, data->h * data->sc, "./so_long");
-	data->img.img = mlx_new_image(data->mlx, data->w * data->sc, data->h * data->sc);
-        data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp, &data->img.ll, &data->img.endian);
+	data->win = mlx_new_window(data->mlx, data->w * sc, h * sc, "./so_long");
+	data->img.img = mlx_new_image(data->mlx, data->w * sc, h * sc);
+	bpp = &data->img.bpp;
+	e = &data->img.endian;
+	data->img.addr = mlx_get_data_addr(data->img.img, bpp, &data->img.ll, e);
 	fill_window(data);
 }
 

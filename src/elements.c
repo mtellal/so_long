@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 10:04:08 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/04 12:27:43 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 15:17:58 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 
 int	element(char *s, t_data *data)
 {
+	int	*h;
+	int	*w;
+	int	*ll;
+	int	*bp;
+
+	w = &data->e.width;
+	h = &data->e.height;
 	if (!s)
 		return (0);
-	data->e.img = mlx_xpm_file_to_image(data->mlx, s, &data->e.width, &data->e.height);
-	data->e.addr = mlx_get_data_addr(data->e.img, &data->e.bpp, &data->e.ll, &data->e.endian);
+	data->e.img = mlx_xpm_file_to_image(data->mlx, s, w, h);
+	ll = &data->e.ll;
+	bp = &data->e.bpp;
+	data->e.addr = mlx_get_data_addr(data->e.img, bp, ll, &data->e.endian);
 	return (1);
 }
 

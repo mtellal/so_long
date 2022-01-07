@@ -6,13 +6,11 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 09:15:07 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/06 16:04:47 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 15:19:19 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-
 
 int	escape(t_data *data)
 {
@@ -28,8 +26,8 @@ int	escape(t_data *data)
 int	no_event(t_data *data)
 {
 	ft_putstr_fd("nombre de moove: ", 1);
-        ft_putnbr_fd(data->move, 1);
-        ft_putstr_fd(" \r", 1);
+	ft_putnbr_fd(data->move, 1);
+	ft_putstr_fd(" \r", 1);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
 

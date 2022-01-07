@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 17:34:23 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/05 18:37:17 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 15:54:30 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	check_proportionate(char **tab)
 		tab++;
 	}
 	return (1);
-
 }
 
 int	check_atleast(char **tab)
@@ -35,7 +34,8 @@ int	check_atleast(char **tab)
 	int	i;
 	int	j;
 
-	init_var(&e, &p, &c, &i, &j);
+	init_var(&e, &p, &c, &i);
+	j = 0;
 	while (tab[i])
 	{
 		j = 0;
@@ -51,9 +51,7 @@ int	check_atleast(char **tab)
 		}
 		i++;
 	}
-	if (p != 1 || c < 0 || e < 0)
-		return (0);
-	return (1);
+	return (compare(p, c, e));
 }
 
 char	*check_map(char **tab)
@@ -75,26 +73,18 @@ char	*check_map(char **tab)
 		}
 		i++;
 	}
-	if (!check_proportionate(tab))
-	       return ("probleme de longueur");
-	if (!check_atleast(tab))
-		return ("manque un element (E, C, P) ou 2 Player");
-	if (!check_rectengular(tab))
-		return ("t'as fait un carre wsh");
-	if (!check_bad_items(tab))
-		return ("char inconnu diff de (10EPC)");
-	return (0);
+	return (err_char(tab));
 }
 
 char	*check_file(char *s, int *f)
 {
 	int	fd;
 
-	 if (!point_ber(s))
-                print_err("nom de fichier invalide (.ber)", 0);
-        fd = open(s, O_RDONLY);
-        if (fd == -1)
-        {
+	if (!point_ber(s))
+		print_err("nom de fichier invalide (.ber)", 0);
+	fd = open(s, O_RDONLY);
+	if (fd == -1)
+	{
 		print_err("impossible d'ouvrir le fichier", 1);
 		close(fd);
 	}
@@ -107,14 +97,14 @@ void	map_all(char *s, t_data *data)
 	char	**tab;
 	t_list	*lst;
 	char	*err;
-	int	fd;
+	int		fd;
 
 	err = check_file(s, &fd);
 	lst = map_to_list(fd);
 	tab = list_to_tab(lst);
 	data->tab = tab;
 	data->w = ft_strlen(data->tab[0]);
-        data->h = tab_len(data->tab);
+	data->h = tab_len(data->tab);
 	err = check_map(tab);
 	if (err)
 	{

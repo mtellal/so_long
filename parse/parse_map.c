@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:47:16 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/05 18:39:39 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 15:08:22 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_bad_items(char **tab)
 	int	j;
 
 	i = 0;
-	while(tab[i])
+	while (tab[i])
 	{
 		j = 0;
 		while (tab[i][j])
@@ -71,15 +71,15 @@ void	delete(void *p)
 char	**list_to_tab(t_list *lst)
 {
 	char	**tab;
-	int	i;
+	int		i;
 	char	*e;
-	int	j;
+	int		j;
 	t_list	*l1;
 
 	j = 0;
 	l1 = lst;
 	i = ft_lstsize(lst);
-	tab = malloc(sizeof(char*) * (i + 1));
+	tab = malloc(sizeof(char *) * (i + 1));
 	if (!tab)
 		return (NULL);
 	while (lst)

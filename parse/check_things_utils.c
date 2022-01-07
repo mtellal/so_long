@@ -6,19 +6,18 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 23:08:55 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/01 16:51:07 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 15:03:23 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_var(int *e, int *p, int *c, int *i, int *j)
+void	init_var(int *e, int *p, int *c, int *i)
 {
 	*e = 0;
 	*p = 0;
 	*c = 0;
 	*i = 0;
-	*j = 0;
 }
 
 int	tab_len(char **tab)
@@ -34,7 +33,7 @@ int	tab_len(char **tab)
 int	point_ber(char *s)
 {
 	char	*ss;
-	int	i;
+	int		i;
 
 	i = 0;
 	ss = ft_strstr(s, ".ber");
@@ -47,31 +46,30 @@ int	point_ber(char *s)
 	return (1);
 }
 
-
-int     check_rectengular(char **tab)
+int	check_rectengular(char **tab)
 {
-        int     i;
-        int     j;
+	int		i;
+	int		j;
 
-        j = tab_len(tab);
-        i = ft_strlen(*tab);
-        if (i == j)
-                return (0);
-        return (1);
+	j = tab_len(tab);
+	i = ft_strlen(*tab);
+	if (i == j)
+		return (0);
+	return (1);
 }
 
-int     check_walls(char **tab, int i, int j)
+int	check_walls(char **tab, int i, int j)
 {
-        char    **c;
+	char	**c;
 
-        c = tab;
-        if (i == 0 && c[i][j] != '1')
-                return (0);
-        if (j == 0 && c[i][j] != '1')
-                return (0);
-        if (i == (tab_len(c) - 1) && c[i][j] != '1')
-                return (0);
-        if (j == (ft_strlen(c[i]) - 1) && c[i][j] != '1')
-                return (0);
-        return (1);
+	c = tab;
+	if (i == 0 && c[i][j] != '1')
+		return (0);
+	if (j == 0 && c[i][j] != '1')
+		return (0);
+	if (i == (tab_len(c) - 1) && c[i][j] != '1')
+		return (0);
+	if (j == (ft_strlen(c[i]) - 1) && c[i][j] != '1')
+		return (0);
+	return (1);
 }
