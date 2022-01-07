@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:09:29 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/07 11:54:58 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 12:09:17 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,16 @@ char	*ft_resize(char *s, char *line)
 
 int	gnl(char **s, char **line, int *j)
 {
-	if ((!(*s = ft_resize(*s, *line))) || !*line)
-                return (-1);
-        if (*j == 0 && (ft_strlen(*s) == 0))
-        {
-                free(*s);
-                *s = NULL;
-                return (0);
-        }
-        return (1);
+	*s = ft_resize(*s, *line);
+	if (!*s || !*line)
+		return (-1);
+	if (*j == 0 && (ft_strlen(*s) == 0))
+	{
+		free(*s);
+		*s = NULL;
+		return (0);
+	}
+	return (1);
 }
 
 int	get_next_line(int fd, char **line)
@@ -70,16 +71,20 @@ int	get_next_line(int fd, char **line)
 	char		*buffer;
 	int			j;
 
-	j = -1;
+	j = 1;
 	if (fd < 0 || read(fd, NULL, 0) < 0 || !line || BUFFER_SIZE < 1)
 		return (-1);
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (-1);
-	while (!ft_line(s) && ((j = read(fd, buffer, BUFFER_SIZE)) > 0))
+	while (!ft_line(s) && j  > 0)
 	{
-		buffer[j] = '\0';
-		s = ft_strjoin_free(s, buffer);
+		j = read(fd, buffer, BUFFER_SIZE);
+		if (j)
+		{
+			buffer[j] = '\0';
+			s = ft_strjoin_free(s, buffer);
+		}
 	}
 	free(buffer);
 	*line = ft_findline(s);
