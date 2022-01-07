@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 18:03:20 by mtellal           #+#    #+#             */
-/*   Updated: 2020/12/16 18:10:55 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/24 10:41:04 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*tab;
 
 	i = 0;
-	if (!s || !f || ((tab = (char *)malloc(sizeof(char) *
-						ft_strlen(s) + 1)) == NULL))
+	tab = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!s || !f || tab == NULL)
 		return (NULL);
 	while (s[i] != '\0')
 	{

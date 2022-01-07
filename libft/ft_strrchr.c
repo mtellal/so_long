@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 11:28:26 by mtellal           #+#    #+#             */
-/*   Updated: 2020/12/19 23:31:09 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/23 18:33:20 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char *p;
+	char	*p;
 
 	p = NULL;
 	if (c == 0)

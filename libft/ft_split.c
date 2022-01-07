@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 18:30:38 by mtellal           #+#    #+#             */
-/*   Updated: 2021/01/14 10:45:51 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/23 18:26:37 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_nmot(char const *s, char c)
+static int	ft_nmot(char const *s, char c)
 {
 	int				m;
 	char const		*a;
@@ -32,7 +32,7 @@ static int		ft_nmot(char const *s, char c)
 	return (m);
 }
 
-static int		ft_nlettre(char const *s, char c)
+static int	ft_nlettre(char const *s, char c)
 {
 	int				l;
 	char const		*a;
@@ -46,7 +46,7 @@ static int		ft_nlettre(char const *s, char c)
 	return (l);
 }
 
-static char		*ft_clean(char **t, int i)
+static char	*ft_clean(char **t, int i)
 {
 	while (i > 0)
 	{
@@ -57,22 +57,23 @@ static char		*ft_clean(char **t, int i)
 	return (NULL);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**t;
 	char	*tab;
 	int		i;
 
 	i = 0;
-	if (!s || (t = (char **)malloc(sizeof(char *) *
-					(ft_nmot(s, c) + 1))) == NULL)
+	t = (char **) malloc(sizeof(char *) * (ft_nmot(s, c) + 1));
+	if (!s || t == NULL)
 		return (NULL);
 	while (*s != '\0')
 	{
 		if (*s != c)
 		{
-			if (!(tab = (char *)malloc(sizeof(char) * ft_nlettre(s, c) + 1)))
-				return ((char**)ft_clean(t, i));
+			tab = (char *) malloc(sizeof(char) * ft_nlettre(s, c) + 1);
+			if (!tab)
+				return ((char **)ft_clean(t, i));
 			ft_strlcpy(tab, s, ft_nlettre(s, c) + 1);
 			*t++ = tab;
 			i++;

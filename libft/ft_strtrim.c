@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 19:34:01 by mtellal           #+#    #+#             */
-/*   Updated: 2021/01/14 10:48:44 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/23 18:35:09 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_belong(const char c, const char *set)
+static int	ft_belong(const char c, const char *set)
 {
 	while (*set)
 	{
@@ -23,7 +23,7 @@ static int		ft_belong(const char c, const char *set)
 	return (0);
 }
 
-char			*ft_strtrim(char const *s, char const *set)
+char	*ft_strtrim(char const *s, char const *set)
 {
 	char			*tab;
 	int				i;
@@ -40,7 +40,8 @@ char			*ft_strtrim(char const *s, char const *set)
 		i++;
 	if (i == (int)(2 * ft_strlen(r)))
 		i = ft_strlen(r) - 1;
-	if (!(tab = (char*)malloc(sizeof(char) * (ft_strlen(r) - i) + 1)))
+	tab = (char *)malloc(sizeof(char) * (ft_strlen(r) - i) + 1);
+	if (!tab)
 		return (NULL);
 	i = ft_strlen(r) - i;
 	tab[i--] = '\0';

@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 13:59:02 by mtellal           #+#    #+#             */
-/*   Updated: 2020/12/10 22:10:07 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/23 18:11:23 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char *tab;
+	unsigned char	*tab;
 
 	tab = s;
 	while (n--)

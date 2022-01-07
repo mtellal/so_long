@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 15:10:44 by mtellal           #+#    #+#             */
-/*   Updated: 2020/12/13 15:18:28 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/24 10:40:21 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	l;
 
 	l = (nmemb * size);
-	if ((tab = (char *)malloc(l)) == NULL)
+	tab = (char *) malloc(l);
+	if (tab == NULL)
 		return (NULL);
 	p = (void *)tab;
 	while (l > 0)

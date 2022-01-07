@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 16:08:09 by mtellal           #+#    #+#             */
-/*   Updated: 2021/01/13 14:29:25 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/23 18:13:57 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_ndigit(long n)
 	return (i);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*tab;
 	int		zero;
@@ -40,7 +40,8 @@ char		*ft_itoa(int n)
 
 	o = (long)n;
 	zero = ft_ndigit(o);
-	if ((tab = (char *)malloc(sizeof(char) * zero + 1)) == NULL)
+	tab = (char *)malloc(sizeof(char) * zero + 1);
+	if (tab == NULL)
 		return (NULL);
 	if (o < 0)
 	{

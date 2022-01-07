@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 20:48:03 by mtellal           #+#    #+#             */
-/*   Updated: 2021/12/31 22:21:18 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 10:23:35 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_lstadd_back(t_list **alst, t_list *new)
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
 	t_list	*last;
 
@@ -25,11 +25,10 @@ void		ft_lstadd_back(t_list **alst, t_list *new)
 		}
 		else
 			*alst = new;
-			
 	}
 	else
 	{
-		alst = (t_list**)malloc(sizeof(t_list*));
+		alst = (t_list **) malloc(sizeof(t_list *));
 		*alst = new;
 	}
 }

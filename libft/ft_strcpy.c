@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 12:07:58 by mtellal           #+#    #+#             */
-/*   Updated: 2020/12/11 12:21:10 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/23 18:27:36 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strcpy(char *dest, const char *src)
 {
-	char *p;
+	char	*p;
 
 	p = dest;
 	while (*src != '\0')

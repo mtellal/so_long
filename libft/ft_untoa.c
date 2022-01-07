@@ -1,34 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_untoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/13 15:59:14 by mtellal           #+#    #+#             */
-/*   Updated: 2021/11/23 18:41:51 by mtellal          ###   ########.fr       */
+/*   Created: 2021/09/24 15:20:18 by mtellal           #+#    #+#             */
+/*   Updated: 2021/11/23 18:38:58 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_substr(char const *s, unsigned int start, size_t len)
+static int	ft_ndigit(unsigned long n)
 {
-	char	*tab;
+	int	i;
 
-	if (!s)
-		return (NULL);
-	if (ft_strlen(s) <= start)
+	i = 1;
+	while (n >= 10)
 	{
-		tab = (char *)malloc(sizeof(char));
-		if (!tab)
-			return (NULL);
-		*tab = '\0';
-		return (tab);
+		n /= 10;
+		i++;
 	}
-	tab = (char *)malloc(sizeof(char) * len + 1);
-	if (!tab)
+	return (i);
+}
+
+char	*ft_untoa(unsigned int n)
+{
+	char			*tab;
+	unsigned int	zero;
+	unsigned long	o;
+
+	o = (unsigned long)n;
+	zero = ft_ndigit(o);
+	tab = (char *)malloc(sizeof(char) * zero + 1);
+	if (tab == NULL)
 		return (NULL);
-	ft_strlcpy(tab, (s + start), len + 1);
+	tab[zero--] = '\0';
+	if (n == 0)
+		tab[zero] = '0';
+	while (o > 0)
+	{
+		tab[zero--] = (unsigned char)((o % 10) + '0');
+		o /= 10;
+	}
 	return (tab);
 }

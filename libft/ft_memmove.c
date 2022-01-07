@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 13:06:36 by mtellal           #+#    #+#             */
-/*   Updated: 2021/01/04 14:58:34 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/23 18:17:39 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	if (!dest && !src)
 		return (NULL);
-	s = (char*)src;
-	d = (char*)dest;
+	s = (char *)src;
+	d = (char *)dest;
 	n -= 1;
 	if (s < d)
 	{

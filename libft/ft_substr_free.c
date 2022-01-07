@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_upgrade_tab.c                                   :+:      :+:    :+:   */
+/*   ft_substr_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/28 19:47:58 by mtellal           #+#    #+#             */
-/*   Updated: 2021/12/28 19:52:40 by mtellal          ###   ########.fr       */
+/*   Created: 2020/12/13 15:59:14 by mtellal           #+#    #+#             */
+/*   Updated: 2021/11/23 18:43:42 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	**ft_upgrade_tab(void **tab, void *e)
+void	*ft_substr_free(char *s, unsigned int start, size_t len)
 {
-	void	**t;
-	int	i;
+	char	*tab;
 
-	i = ft_strlen(tab);
-	t = (void**)malloc(sizeof(void*) * i  + 2);
-	if (!t)
-		return (NULL); 
-	while(i > 0)
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) <= start)
 	{
-		*t = *tab;
-		t++;
-		tab++;
-		i--;
+		tab = (char *)malloc(sizeof(char));
+		if (!tab)
+			return (NULL);
+		*tab = '\0';
+		return (tab);
 	}
-	*t++ = e;
-	*t = NULL;
-	return (t);
+	tab = (char *)malloc(sizeof(char) * len + 1);
+	if (!tab)
+		return (NULL);
+	ft_strlcpy(tab, (s + start), len + 1);
+	free(s);
+	return (tab);
 }

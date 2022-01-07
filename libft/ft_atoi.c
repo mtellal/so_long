@@ -6,7 +6,7 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 15:21:50 by mtellal           #+#    #+#             */
-/*   Updated: 2020/12/12 15:29:35 by mtellal          ###   ########.fr       */
+/*   Updated: 2021/11/23 18:10:17 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int i;
-	int s;
+	int	i;
+	int	s;
 
 	i = 0;
 	s = 1;

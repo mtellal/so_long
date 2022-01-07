@@ -6,12 +6,11 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 16:55:19 by mtellal           #+#    #+#             */
-/*   Updated: 2021/12/29 17:46:50 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 11:50:33 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 char	*ft_strjoin_free(char *s1, char *s2)
 {
@@ -20,7 +19,8 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	int		i;
 
 	i = 0;
-	if (!(tab = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char))))
+	tab = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!tab)
 		return (NULL);
 	p = tab;
 	while (s1 && *s1)
@@ -37,4 +37,40 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	}
 	*tab = '\0';
 	return (p);
+}
+
+int	check(char **s, int i)
+{
+	char		c;
+	char		*ss;
+
+	ss = *s;
+	c = *(ss + i);
+	*s += i;
+	if (c == '\n')
+		return (1);
+	return (0);
+}
+
+char	*norme_fun(int i, char *s)
+{
+	char	*tab;
+
+	if (s && *s && check(&s, i))
+	{
+		s++;
+		tab = malloc(sizeof(char) * (ft_strlen(s) + 1));
+		if (!tab)
+			return (NULL);
+		ft_strlcpy(tab, s, ft_strlen(s) + 1);
+		free(s - i - 1);
+		return (tab);
+	}
+	tab = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!tab)
+		return (NULL);
+	ft_strlcpy(tab, s, ft_strlen(s) + 1);
+	if (s)
+		free(s - i);
+	return (tab);
 }

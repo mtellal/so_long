@@ -6,13 +6,13 @@
 /*   By: mtellal <mtellal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:09:29 by mtellal           #+#    #+#             */
-/*   Updated: 2022/01/05 11:49:01 by mtellal          ###   ########.fr       */
+/*   Updated: 2022/01/07 11:54:58 by mtellal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_line(char *s)
+int	ft_line(char *s)
 {
 	while (s && *s)
 	{
@@ -30,7 +30,8 @@ char	*ft_findline(char *s)
 	i = 0;
 	while (s && s[i] && s[i] != '\n')
 		i++;
-	if (!(tab = malloc(sizeof(char) * (i + 1))))
+	tab = malloc(sizeof(char) * (i + 1));
+	if (!tab)
 	{
 		if (s)
 			free(s);
@@ -43,31 +44,27 @@ char	*ft_findline(char *s)
 char	*ft_resize(char *s, char *line)
 {
 	int		i;
-	char	*tab;
 
 	if (!line)
 		return (NULL);
 	i = ft_strlen(line);
-	if (s && *s && *(s += i) == '\n')
-	{
-		s++;
-		if (!(tab = malloc(sizeof(char) * (ft_strlen(s) + 1))))
-			return (NULL);
-		ft_strlcpy(tab, s, ft_strlen(s) + 1);
-		free(s - i - 1);
-	}
-	else
-	{
-		if (!(tab = malloc(sizeof(char) * (ft_strlen(s) + 1))))
-			return (NULL);
-		ft_strlcpy(tab, s, ft_strlen(s) + 1);
-		if (s)
-			free(s - i);
-	}
-	return (tab);
+	return (norme_fun(i, s));
 }
 
-int		get_next_line(int fd, char **line)
+int	gnl(char **s, char **line, int *j)
+{
+	if ((!(*s = ft_resize(*s, *line))) || !*line)
+                return (-1);
+        if (*j == 0 && (ft_strlen(*s) == 0))
+        {
+                free(*s);
+                *s = NULL;
+                return (0);
+        }
+        return (1);
+}
+
+int	get_next_line(int fd, char **line)
 {
 	static char	*s;
 	char		*buffer;
@@ -76,7 +73,8 @@ int		get_next_line(int fd, char **line)
 	j = -1;
 	if (fd < 0 || read(fd, NULL, 0) < 0 || !line || BUFFER_SIZE < 1)
 		return (-1);
-	if (!(buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
 		return (-1);
 	while (!ft_line(s) && ((j = read(fd, buffer, BUFFER_SIZE)) > 0))
 	{
@@ -85,13 +83,5 @@ int		get_next_line(int fd, char **line)
 	}
 	free(buffer);
 	*line = ft_findline(s);
-	if ((!(s = ft_resize(s, *line))) || !*line)
-		return (-1);
-	if (j == 0 && (ft_strlen(s) == 0))
-	{
-		free(s);
-		s = NULL;
-		return (0);
-	}
-	return (1);
+	return (gnl(&s, line, &j));
 }
